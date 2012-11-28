@@ -11,16 +11,24 @@
 #import "BBAssetManager.h"
 #import "BBCollisionDetector.h"
 #import "BBPhysics.h"
+#import "BBScene.h"
+#import <GLKit/GLKit.h>
 
-@interface BBGameController : NSObject
+@interface BBGameController : NSObject<GLKViewControllerDelegate>
 
 @property (nonatomic, retain) BBEventHandler *eventHandler;
 @property (nonatomic, retain) BBAssetManager *assetManager;
 @property (nonatomic, retain) BBCollisionDetector *collisionDetector;
 @property (nonatomic, retain) BBPhysics *physics;
+@property (nonatomic, retain) BBScene *currentScene;
 @property (nonatomic) float deltaTime;
 @property (nonatomic) float lastTime;
+@property (nonatomic) GLKViewController *glkVC;
 
+- (id)initWithGLKViewController:(id)GLKViewController;
 - (void)updateWithDeltaTime:(NSNumber *)deltaTime;
+- (void)setupGL;
+- (void)drawScene;
+- (void)updateState;
 
 @end
